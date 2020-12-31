@@ -1,0 +1,21 @@
+{
+  "name": "dirkdevisser.dev",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "@compas/cli": "0.0.106",
+    "@compas/code-gen": "0.0.106",
+    "@compas/insight": "0.0.106",
+    "@compas/lint-config": "0.0.106",
+    "@compas/server": "0.0.106",
+    "@compas/stdlib": "0.0.106",
+    "front-matter": "4.0.2",
+    "marked": "1.2.7"
+  },
+  "engines": {
+    "node": ">=15"
+  }
+}
