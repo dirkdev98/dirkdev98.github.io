@@ -1,6 +1,10 @@
 ---
-title: First post description: First post on my personal blog date: 2020-12-31 tags: []
-type: blog order: 2
+title: First post
+description: First post on my personal blog
+date: 2020-12-31
+tags: []
+type: blog
+order: 2
 ---
 
 # First post
