@@ -4,6 +4,7 @@ import { environment, isProduction, isStaging, mainFn } from "@compas/stdlib";
 import {
   annotateItemWithContents,
   getContentStructure,
+  setMarkedOptions,
 } from "../src/content.js";
 import { renderPage } from "../src/renderer.js";
 
@@ -24,6 +25,8 @@ export const cliWatchOptions = {
 async function main(logger) {
   const app = getApp({});
   const port = environment.PORT || 3000;
+
+  setMarkedOptions();
 
   app.use(async (ctx, next) => {
     if (!ctx.path.endsWith(".html")) {

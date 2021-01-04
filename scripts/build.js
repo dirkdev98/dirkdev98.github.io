@@ -10,6 +10,7 @@ import { mainFn, pathJoin } from "@compas/stdlib";
 import {
   annotateItemWithContents,
   getContentStructure,
+  setMarkedOptions,
 } from "../src/content.js";
 import { renderPage } from "../src/renderer.js";
 
@@ -24,6 +25,7 @@ async function main(logger) {
   await prepareOutputDirectory(newEventFromEvent(event));
 
   const files = await getContentStructure(newEventFromEvent(event));
+  setMarkedOptions();
 
   await Promise.all(
     files.map((it) => annotateItemWithContents(newEventFromEvent(event), it)),

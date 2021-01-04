@@ -3,6 +3,7 @@ import * as path from "path";
 import { eventStart, eventStop } from "@compas/insight";
 import { pathJoin, processDirectoryRecursive } from "@compas/stdlib";
 import frontMatter from "front-matter";
+import hljs from "highlight.js";
 import marked from "marked";
 import { validateContentItem } from "./generated/validators.js";
 
@@ -67,4 +68,14 @@ export async function annotateItemWithContents(event, item) {
       errors,
     });
   }
+}
+
+export function setMarkedOptions() {
+  marked.setOptions({
+    renderer: new marked.Renderer(),
+    highlight: function (code, language) {
+      const validLanguage = hljs.getLanguage(language) ? language : "plaintext";
+      return hljs.highlight(validLanguage, code).value;
+    },
+  });
 }
