@@ -5,6 +5,8 @@
  * @param {string} contentPath
  * @returns {ContentItem[]}
  */
+import { AppError } from "@compas/stdlib";
+
 export function getBreadcrumbsForContentPath(structure, contentPath) {
   const breadCrumbs = [];
   const contentPathMap = {};
@@ -103,7 +105,20 @@ export function getIndexNavigationListForContentPath(structure, contentPath) {
  * @param {ContentItem[]} array
  */
 export function sortContentItemArray(array) {
+  const orderSet = new Set();
+
+  for (const item of array) {
+    orderSet.add(item.metadata.order);
+  }
+
+  if (orderSet.size !== array.length) {
+    throw AppError.validationError("structure.sortContentItemArray.notUnique", {
+      firstMetadata: array[0].metadata,
+      orderSet: [...orderSet],
+    });
+  }
+
   array.sort((a, b) => {
-    return a.metadata.categoryOrder - b.metadata.categoryOrder;
+    return a.metadata.order - b.metadata.order;
   });
 }
