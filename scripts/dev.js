@@ -7,6 +7,7 @@ import {
   setMarkedOptions,
 } from "../src/content.js";
 import { renderPage } from "../src/renderer.js";
+import { renderSitemap } from "../src/sitemap.js";
 
 mainFn(import.meta, main);
 
@@ -22,21 +23,28 @@ export const cliWatchOptions = {
  * @param {Logger} logger
  * @returns {Promise<void>}
  */
-async function main(logger) {
+function main(logger) {
   const app = getApp({});
   const port = environment.PORT || 3000;
+  const devServerCname = `http://localhost:${port}`;
 
   setMarkedOptions();
 
   app.use(async (ctx, next) => {
-    if (!ctx.path.endsWith(".html")) {
+    let path = ctx.path;
+    if (path === "" || path === "/") {
+      path = "/index.html";
+    }
+
+    if (!path.endsWith(".html") && !path.endsWith(".xml")) {
       ctx.status = 404;
       ctx.body = "";
       return next();
     }
 
     // Strip prefixed / and trailing .html
-    const path = ctx.path.substring(1, ctx.path.length - 5);
+    path = path.substring(1, path.length - 5);
+
     const structure = await getContentStructure(newEventFromEvent(ctx.event));
 
     for (const item of structure) {
@@ -44,13 +52,26 @@ async function main(logger) {
         await annotateItemWithContents(newEventFromEvent(ctx.event), item);
         ctx.body = await renderPage(
           newEventFromEvent(ctx.event),
-          `http://localhost:${port}`,
+          devServerCname,
           structure,
           item,
         );
 
         return next();
       }
+    }
+
+    // We already stripped too many characters from the 'path' variable so use the
+    // original one
+    if (ctx.path === "/sitemap.xml") {
+      ctx.body = await renderSitemap(
+        newEventFromEvent(ctx.event),
+        devServerCname,
+        structure,
+      );
+      ctx.response.set("content-type", "text/xml");
+
+      return next();
     }
 
     ctx.status = 404;

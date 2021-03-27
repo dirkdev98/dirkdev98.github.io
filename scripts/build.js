@@ -13,6 +13,7 @@ import {
   setMarkedOptions,
 } from "../src/content.js";
 import { renderPage } from "../src/renderer.js";
+import { renderSitemap } from "../src/sitemap.js";
 
 mainFn(import.meta, main);
 
@@ -44,6 +45,11 @@ async function main(logger) {
 
       await writeFile(pathJoin(outputDirectory, `${it.contentPath}.html`), src);
     }),
+  );
+
+  await writeFile(
+    pathJoin(outputDirectory, "sitemap.xml"),
+    renderSitemap(newEventFromEvent(event), cname, files),
   );
 }
 

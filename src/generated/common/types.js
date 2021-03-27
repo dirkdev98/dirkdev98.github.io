@@ -13,5 +13,5 @@ export const __generated__ = true;
  * @typedef {import("@compas/code-gen").RouteCreator} RouteCreator
  */
 /**
- * @typedef {{"filePath": string, "contentPath": string, "metadata"?: {"type": "blog"|"page", "title": string, "date"?: Date, "description": string, "order": number, "tags": (string)[], }, "htmlContent"?: string, }} ContentItem
+ * @typedef {{"filePath": string, "contentPath": string, "metadata"?: undefined|{"type": "blog"|"page", "title": string, "date"?: undefined|Date, "description": string, "order": number, "tags": (string)[], }, "htmlContent"?: undefined|string, }} ContentItem
  */

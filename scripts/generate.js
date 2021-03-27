@@ -15,6 +15,7 @@ async function main() {
   const app = new App({ verbose: true });
 
   extendWithContent(app);
+
   await app.generate({
     enabledGenerators: ["type", "validator"],
     isNode: true,

@@ -64,26 +64,25 @@ export function anonymousValidator186795873(
  * @param {string} propertyPath
  * @param {{ key: string, info: any }[]} errors
  * @param {string} parentType
- * @returns {string|undefined}
+ * @returns {undefined|string|undefined}
  */
-export function anonymousValidator1135331723(
+export function anonymousValidator852571656(
   value,
   propertyPath,
   errors = [],
   parentType = "string",
 ) {
   if (isNil(value)) {
-    errors.push({
-      key: `validator.${parentType}.undefined`,
-      info: { propertyPath },
-    });
-    return undefined;
+    return value;
   }
   if (typeof value !== "string") {
     errors.push({
       key: `validator.${parentType}.type`,
       info: { propertyPath },
     });
+    return undefined;
+  }
+  if (value.length === 0) {
     return undefined;
   }
   if (value.length < 24) {
@@ -131,26 +130,32 @@ export function anonymousValidator1988053796(
   if (isNil(value)) {
     return value;
   }
-  if (typeof value === "string") {
-    value = anonymousValidator1135331723(value, propertyPath, errors, "date");
-  }
-  try {
-    const date = new Date(value);
-    if (!isNaN(date.getTime())) {
-      return date;
-    }
-  } catch {
+  if (
+    typeof value !== "string" &&
+    typeof value !== "number" &&
+    !(value instanceof Date)
+  ) {
     errors.push({
       key: `validator.${parentType}.invalid`,
       info: { propertyPath },
     });
     return undefined;
   }
-  errors.push({
-    key: `validator.${parentType}.invalid`,
-    info: { propertyPath },
-  });
-  return undefined;
+  if (typeof value === "string") {
+    value = anonymousValidator852571656(value, propertyPath, errors, "date");
+    if (!value) {
+      return value;
+    }
+  }
+  const date = new Date(value);
+  if (isNaN(date.getTime())) {
+    errors.push({
+      key: `validator.${parentType}.invalid`,
+      info: { propertyPath },
+    });
+    return undefined;
+  }
+  return date;
 }
 /**
  * @param {*} value
@@ -233,7 +238,7 @@ export function anonymousValidator1898391521(
  * @param {string} propertyPath
  * @param {{ key: string, info: any }[]} errors
  * @param {string} parentType
- * @returns {undefined|{"type": "blog"|"page", "title": string, "date"?: Date, "description": string, "order": number, "tags": (string)[], }|undefined}
+ * @returns {undefined|{"type": "blog"|"page", "title": string, "date"?: undefined|Date, "description": string, "order": number, "tags": (string)[], }|undefined}
  */
 export function anonymousValidator675969221(
   value,
@@ -338,7 +343,7 @@ export function anonymousValidator1443576836(
  * @param {string} propertyPath
  * @param {{ key: string, info: any }[]} errors
  * @param {string} parentType
- * @returns {{"filePath": string, "contentPath": string, "metadata"?: {"type": "blog"|"page", "title": string, "date"?: Date, "description": string, "order": number, "tags": (string)[], }, "htmlContent"?: string, }|undefined}
+ * @returns {{"filePath": string, "contentPath": string, "metadata"?: undefined|{"type": "blog"|"page", "title": string, "date"?: undefined|Date, "description": string, "order": number, "tags": (string)[], }, "htmlContent"?: undefined|string, }|undefined}
  */
 export function anonymousValidator1278404364(
   value,

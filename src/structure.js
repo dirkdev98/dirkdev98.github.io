@@ -113,7 +113,6 @@ export function sortContentItemArray(array) {
 
   if (orderSet.size !== array.length) {
     throw AppError.validationError("structure.sortContentItemArray.notUnique", {
-      firstMetadata: array[0].metadata,
       orderSet: [...orderSet],
     });
   }

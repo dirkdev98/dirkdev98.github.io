@@ -10,11 +10,11 @@ import {
 /**
  * Render a page
  *
- * @param {Event} event
+ * @param {InsightEvent} event
  * @param {string} cname
  * @param {ContentItem[]} structure
  * @param {ContentItem} page
- * @return {Promise<string>}
+ * @returns {Promise<string>}
  */
 export async function renderPage(event, cname, structure, page) {
   eventStart(event, "renderer.renderPage");
@@ -52,6 +52,7 @@ export async function renderPage(event, cname, structure, page) {
             code {margin-left: 2px; margin-right: 2px; }
             a {border-bottom: 1px solid #444444; color: #444444; text-decoration: none;}
             a:hover {border-bottom: 0;}
+            a.anchor { float: right; text-decoration: none; padding: 1px 3px; border-bottom: none; }
             .hljs{display:block;overflow-x:auto;padding:.5em;background:#f0f0f0}.hljs,.hljs-subst{color:#444}.hljs-comment{color:#888}.hljs-attribute,.hljs-doctag,.hljs-keyword,.hljs-meta-keyword,.hljs-name,.hljs-selector-tag{font-weight:700}.hljs-deletion,.hljs-number,.hljs-quote,.hljs-selector-class,.hljs-selector-id,.hljs-string,.hljs-template-tag,.hljs-type{color:#800}.hljs-section,.hljs-title{color:#800;font-weight:700}.hljs-link,.hljs-regexp,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-symbol,.hljs-template-variable,.hljs-variable{color:#bc6060}.hljs-literal{color:#78a960}.hljs-addition,.hljs-built_in,.hljs-bullet,.hljs-code{color:#397300}.hljs-meta{color:#1f7199}.hljs-meta-string{color:#4d99bf}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
         </style>
     </head>
@@ -85,11 +86,11 @@ export async function renderPage(event, cname, structure, page) {
 /**
  * Render all pages of a directory if this page is an 'index' page
  *
- * @param {Event} event
+ * @param {InsightEvent} event
  * @param {string} cname
  * @param {ContentItem[]} structure
  * @param {ContentItem} page
- * @return Promise<string>
+ * @returns Promise<string>
  */
 async function renderIndexNavigation(event, cname, structure, page) {
   if (!page.contentPath.endsWith("index")) {
@@ -107,13 +108,19 @@ async function renderIndexNavigation(event, cname, structure, page) {
       annotateItemWithContents(newEventFromEvent(event), it),
     ),
   );
-  sortContentItemArray(navigationList);
+
+  try {
+    sortContentItemArray(navigationList);
+  } catch (e) {
+    e.info.page = page.metadata;
+    throw e;
+  }
 
   if (navigationList.length === 0) {
     return "";
   }
 
-  let contents = "<article><ul>";
+  let contents = "<hr><article><ul>";
   for (const item of navigationList) {
     contents += `<li><a href="${formatUrl(cname, item.contentPath)}">${
       item.metadata.title
@@ -128,7 +135,7 @@ async function renderIndexNavigation(event, cname, structure, page) {
 /**
  * Format header and footer with breadcrumbs and post date
  *
- * @param {Event} event
+ * @param {InsightEvent} event
  * @param {ContentItem} page
  * @param {string} cname
  * @param {ContentItem[]} breadcrumbPages
