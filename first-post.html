@@ -14,6 +14,7 @@
             code {margin-left: 2px; margin-right: 2px; }
             a {border-bottom: 1px solid #444444; color: #444444; text-decoration: none;}
             a:hover {border-bottom: 0;}
+            a.anchor { float: right; text-decoration: none; padding: 1px 3px; border-bottom: none; }
             .hljs{display:block;overflow-x:auto;padding:.5em;background:#f0f0f0}.hljs,.hljs-subst{color:#444}.hljs-comment{color:#888}.hljs-attribute,.hljs-doctag,.hljs-keyword,.hljs-meta-keyword,.hljs-name,.hljs-selector-tag{font-weight:700}.hljs-deletion,.hljs-number,.hljs-quote,.hljs-selector-class,.hljs-selector-id,.hljs-string,.hljs-template-tag,.hljs-type{color:#800}.hljs-section,.hljs-title{color:#800;font-weight:700}.hljs-link,.hljs-regexp,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-symbol,.hljs-template-variable,.hljs-variable{color:#bc6060}.hljs-literal{color:#78a960}.hljs-addition,.hljs-built_in,.hljs-bullet,.hljs-code{color:#397300}.hljs-meta{color:#1f7199}.hljs-meta-string{color:#4d99bf}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
         </style>
     </head>
@@ -23,16 +24,25 @@
     </header>
     <main>
     <article>
-        <h1 id="first-post">First post</h1>
+        <h1 id="first-post">
+  First post
+  
+</h1>
 <p>Hello! Time to get a personal blog going. Build a quick setup to statically
 convert Markdown pages to HTML including a dev server for previews.</p>
-<h2 id="the-stack">The stack</h2>
+<h2 id="the-stack">
+  The stack
+  <a name="the-stack" class="anchor" href="#the-stack">#</a>
+</h2>
 <p>Using <a href="https://www.npmjs.com/package/front-matter">front-matter</a> to extract page
 titles, descriptions and the actual markdown from files. Then it is passed
 through <a href="https://marked.js.org/">marked</a> to convert Markdown to HTML. The dev
 server uses a <a href="https://compasjs.com">Compas</a> provide Koa instance and renders
 the pages on the fly.</p>
-<h3 id="extras">Extra&#39;s</h3>
+<h3 id="extras">
+  Extra&#39;s
+  <a name="extras" class="anchor" href="#extras">#</a>
+</h3>
 <p>On top of converting the pages to HTML it also adds some breadcrumbs and
 &#39;index&#39;-navigation pages, to make it easier to navigate through the site when
 landing on an article.</p>
