@@ -1,0 +1,108 @@
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0"/>
+        <title>DX principles</title>
+        <meta name="description" content="Digest of developers experience principles"/>
+        <link rel="canonical" href="https://dirkdevisser.com/dx-principles.html"/>
+        <style>
+            body {margin: 5% auto; background: #f2f2f2; color: #444444; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.8; text-shadow: 0 1px 0 #ffffff; max-width: 73%;}
+            pre, code {background: white;}
+            pre {padding-left: 2px; line-height: 1.2; }
+            code {margin-left: 2px; margin-right: 2px; }
+            a {border-bottom: 1px solid #444444; color: #444444; text-decoration: none;}
+            a:hover {border-bottom: 0;}
+            a.anchor { float: right; text-decoration: none; padding: 1px 3px; border-bottom: none; }
+            .hljs{display:block;overflow-x:auto;padding:.5em;background:#f0f0f0}.hljs,.hljs-subst{color:#444}.hljs-comment{color:#888}.hljs-attribute,.hljs-doctag,.hljs-keyword,.hljs-meta-keyword,.hljs-name,.hljs-selector-tag{font-weight:700}.hljs-deletion,.hljs-number,.hljs-quote,.hljs-selector-class,.hljs-selector-id,.hljs-string,.hljs-template-tag,.hljs-type{color:#800}.hljs-section,.hljs-title{color:#800;font-weight:700}.hljs-link,.hljs-regexp,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-symbol,.hljs-template-variable,.hljs-variable{color:#bc6060}.hljs-literal{color:#78a960}.hljs-addition,.hljs-built_in,.hljs-bullet,.hljs-code{color:#397300}.hljs-meta{color:#1f7199}.hljs-meta-string{color:#4d99bf}.hljs-emphasis{font-style:italic}.hljs-strong{font-weight:700}
+        </style>
+    </head>
+    <body>
+    <header>
+        <nav><a href="https://dirkdevisser.com/index.html">Home</a> - 2021-03-27</nav>
+    </header>
+    <main>
+    <article>
+        <h1 id="digest-of-developer-experience-principles">
+  Digest of Developer experience principles
+  
+</h1>
+<p>Warmed up by the interesting post
+<a href="https://cpojer.net/posts/principles-of-devx">&#39;Principles of Developer Experience&#39;</a>
+from Christoph Nakazawa here is a digest of the post, for future reference.</p>
+<h2 id="the-principles">
+  The principles
+  <a name="the-principles" class="anchor" href="#the-principles">#</a>
+</h2>
+<p>It is a stack, easier to change the top of the stack, and gets increasingly
+difficult at the bottom. This document starts describing the principles the DX
+way, from bottom to top.</p>
+<h3 id="user-focussed">
+  User focussed
+  <a name="user-focussed" class="anchor" href="#user-focussed">#</a>
+</h3>
+<ul>
+<li>Be as performant as possible. Aim for a fast develop and run cycle.</li>
+<li>Clear signals. Accessible output, clear and actionable errors</li>
+<li>Documentation should answer the questions that the user has</li>
+<li>Scalable for the growth of dev team</li>
+</ul>
+<p>Things that make this challenging to accomplish: focus on potential new users
+instead of the current users, and the boring work that goes in testing, ensuring
+clear errors, writing documentation etc.</p>
+<h3 id="incremental-migration">
+  Incremental migration
+  <a name="incremental-migration" class="anchor" href="#incremental-migration">#</a>
+</h3>
+<p>Incremental migration ensures everyone can keep up, while &#39;legacy&#39; api&#39;s are
+worked out of the code base. Big breaking changes and rewrites have a big sunk
+cost.</p>
+<h3 id="clarity">
+  Clarity
+  <a name="clarity" class="anchor" href="#clarity">#</a>
+</h3>
+<p>Write proposals, share with people knowledgeable in the domain or people willing
+to give honest feedback. Surface the right amount of complexity when discussing
+features with the users.</p>
+<h3 id="re-evaluate">
+  Re-evaluate
+  <a name="re-evaluate" class="anchor" href="#re-evaluate">#</a>
+</h3>
+<p>Re-evaluate assumptions, constraints and trade-offs. These tend to change over
+time. By documenting decisions, future you can look back and reflect on these
+and decide if they hold up or need to be improved. Re-evaluate assumptions,
+constraints and trade-offs. These tend to change over time. By documenting
+decisions, future you can look back and reflect on these and decide if they hold
+up or not. Always aim to make things easier.</p>
+<h3 id="maximize-option-value">
+  Maximize option value
+  <a name="maximize-option-value" class="anchor" href="#maximize-option-value">#</a>
+</h3>
+<p>Retain and gain option value when doing changes. There are always related
+features that can then be implemented with less work. This conflicts with
+<code>YAGNI</code>.</p>
+<ul>
+<li>Modularize with clear api boundaries</li>
+<li>Third party dependencies introduce external control</li>
+</ul>
+<h3 id="final-notes">
+  Final notes
+  <a name="final-notes" class="anchor" href="#final-notes">#</a>
+</h3>
+<p>These are not set in stone for all situations. Tools may have a principle on
+scale, companies on growth. Some examples in the wild:</p>
+<ul>
+<li><a href="https://reactjs.org/docs/design-principles.html">React&#39;s design principles</a></li>
+<li><a href="http://fishshell.com/docs/current/design.html">Fish shell design</a></li>
+</ul>
+
+    </article>
+    
+    </main>
+    <footer>
+        <nav><a href="https://dirkdevisser.com/index.html">Home</a> - 2021-03-27</nav>
+    </footer>
+    </body>
+</html>
+  
